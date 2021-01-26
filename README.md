@@ -26,3 +26,4 @@ To use proposed JS features not included into ES6, do this:
 
 * `npm install --save-dev babel-preset-stage-0`
 * in `brunch-config.js`, add the preset: `presets: ['latest', 'stage-0']`
+# hello-brunch
