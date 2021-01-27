@@ -2,14 +2,17 @@
 pipeline {
     agent any
     options {
-	ansicolor('xterm')
+        ansiColor('xterm')
     }
     stages {
         stage('Build') {
             steps {
+                git branch: 'main', url: 'https://github.com/rodrigoandradedm/hello-brunch'
                 sh 'docker-compose build'
-                sh 'docker-compose up -d'
             }
+        }
+        stage('Deploy')
+            sh 'docker-compose up -d' 
         }
     }
 }
