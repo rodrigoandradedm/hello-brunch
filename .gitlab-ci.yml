@@ -9,4 +9,9 @@ build-job:
 deploy-job:
     stage: deploy
     script:
-        - docker-compose up -d
+        - echo deploy
+test-job:
+    stage: test
+    script:
+        - yarn test
+
