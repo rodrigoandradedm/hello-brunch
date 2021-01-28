@@ -4,4 +4,9 @@ default:
 build-job:
     stage: build
     script:
-        - docker-compose -up -d
+        - yarn
+        - yarn build
+deploy-job:
+    stage: deploy
+    script:
+        - docker-compose up -d
