@@ -9,7 +9,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/rodrigoandradedm/hello-brunch'
                 sh 'docker-compose build'
-                sh 'trivy image --format json --output json hello-brunch'           
+                sh 'trivy image --format json --output trivy-results.json hello-brunch'           
             }
             post {
                 always {
