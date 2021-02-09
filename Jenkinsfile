@@ -9,6 +9,12 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/rodrigoandradedm/hello-brunch'
                 sh 'docker-compose build'
+                sh 'trivy image --format json --output json hello-brunch'           
+            }
+            post {
+                always {
+                    recordIssues enabledForFailure: true, tool: trivy(pattern: 'trivy-results.json')
+                }
             }
         }
         stage('Deploy') {
