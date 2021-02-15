@@ -28,10 +28,9 @@ pipeline {
         stage('Deploy') {
           steps {
 	    sshagent (credentials: ['deployDocker']){
-	      //withDockerServer([credentialsId: "gitlabssh", uri: "tcp://10.250.14.1"]) {
 	        sh 'docker pull 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
-                sh 'docker run -dit 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
-	      //}
+                //sh 'docker run -dit 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
+		sh 'docker-compose up -d /home/deploy/docker-compose.yml'
 	    }
           }
         }
