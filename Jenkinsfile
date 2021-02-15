@@ -15,8 +15,9 @@ pipeline {
 	stage('Registry') {
             steps {
                 withDockerRegistry([credentialsId:"gitlab-registry", url:"http://10.250.14.1:5050"]) {
-                  sh 'docker tag hello-brunch:latest 10.250.14.1:5050/root/hello-brunch-${currentBuild.number}:latest'
-                  sh 'docker push 10.250.14.1:5050/root/hello-brunch-${currentBuild.number}:latest'
+		  env.BUILD = BUILD_NUMBER
+                  sh 'docker tag hello-brunch:latest 10.250.14.1:5050/root/hello-brunch-${env.BUILD}:latest'
+                  sh 'docker push 10.250.14.1:5050/root/hello-brunch-${env.BUILD}:latest'
                 }
             }
         }
