@@ -17,11 +17,11 @@ pipeline {
                 withDockerRegistry([credentialsId:"gitlab-registry", url:"http://10.250.14.1:5050"]) {
                   sh 'docker tag hello-brunch:latest 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
 		  //sh 'docker tag hello-brunch:latest 10.250.14.1:5050/root/hello-brunch:latest'
-		  sh 'git tag BUILD-1.${BUILD_NUMBER}'
                   sh 'docker push 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
 		  //sh 'docker push 10.250.14.1:5050/root/hello-brunch:latest'
 		  sshagent (credentials: ['gitlabssh']) {
 		    sh 'git push --tags http://10.250.14.1:8929/root/hello-brunch'
+		    sh 'git tag BUILD-1.${BUILD_NUMBER}'
 		  }
                 }
             }
