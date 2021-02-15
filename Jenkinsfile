@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'master', url: 'http://10.250.14.1:8929/root/hello-brunch'
+		sshagent (credentials: ['gitlabssh']) {
+                  git branch: 'master', url: 'ssh://git@10.250.14.1:2224/root/hello-brunch.git'
+		}
                 sh 'docker-compose build'
             }
         }
