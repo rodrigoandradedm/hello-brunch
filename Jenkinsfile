@@ -28,10 +28,10 @@ pipeline {
         stage('Deploy') {
           steps {
 	    sshagent (credentialsId: ['deployDocker']){
-	      withDockerServer([credentialsId: "gitlabssh", uri: "tcp://10.250.14.1"]) {
+	      //withDockerServer([credentialsId: "gitlabssh", uri: "tcp://10.250.14.1"]) {
 	        sh 'docker pull 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
                 sh 'docker run -t -i 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER} /bin/bash'
-	      }
+	      //}
 	    }
           }
         }
