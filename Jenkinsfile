@@ -30,7 +30,7 @@ pipeline {
 	    sshagent (credentialsId: ['deployDocker']){
 	      //withDockerServer([credentialsId: "gitlabssh", uri: "tcp://10.250.14.1"]) {
 	        sh 'docker pull 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
-                sh 'docker run -t -i 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER} /bin/bash'
+                sh 'docker run -dit 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
 	      //}
 	    }
           }
