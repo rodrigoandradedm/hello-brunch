@@ -8,9 +8,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		//sshagent(['gitlabssh']) {
-                //  git branch: 'master', url: 'ssh://git@10.250.14.1:2224/root/hello-brunch.git'
-		//}
                 sh 'docker-compose build'
             }
         }
@@ -22,7 +19,7 @@ pipeline {
                   sh 'docker push 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
 		  //sh 'docker push 10.250.14.1:5050/root/hello-brunch:latest'
 		  sshagent (credentials: ['gitlabssh']) {
-		    sh 'git push --tags http://10.250.14.1:8929/root/hello-brunch'
+		    sh 'git push --tags'
 		    sh 'git tag BUILD-1.${BUILD_NUMBER}'
 		  }
                 }
