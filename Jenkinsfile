@@ -29,8 +29,8 @@ pipeline {
           steps {
 	    sshagent (credentials: ['deployDocker']){
 	        sh 'docker pull 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
-                sh 'docker run -dit 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
-		//sh 'ssh -o "StrictHostKeyChecking no" deploy@10.250.14.1 "docker-compose pull && docker-compose up -d"'
+                //sh 'docker run -dit 10.250.14.1:5050/root/hello-brunch:BUILD-1.${BUILD_NUMBER}'
+		sh 'ssh -o "StrictHostKeyChecking no" deploy@10.250.14.1 "docker-compose pull && docker-compose up -d"'
 	    }
           }
         }
